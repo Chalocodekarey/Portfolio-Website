@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QE | SDET & Test Architect</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Clash+Display:wght@400;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surojit Sen — SDET & Test Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Clash+Display:wght@400;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>emailjs.init("RGBq7a3Ux47ARpgkm");</script>
 <style>
 :root {
   --bg: #060A14;
@@ -78,7 +80,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 60px;
+  padding: 10px 60px;
   background: linear-gradient(180deg, rgba(6,10,20,0.9) 0%, transparent 100%);
   backdrop-filter: blur(8px);
 }
@@ -89,7 +91,29 @@ nav {
   color: var(--white);
   text-decoration: none;
 }
-.nav-logo span { color: var(--orange); }
+.nav-logo-badge {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--orange), var(--teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(255,107,53,0.35);
+}
+.nav-logo-name {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.nav-logo-name span { color: var(--orange); }
 .nav-links { display: flex; gap: 40px; list-style: none; }
 .nav-links a {
   font-size: 0.78rem;
@@ -131,73 +155,99 @@ nav {
 section {
   position: relative;
   z-index: 10;
-  min-height: 100vh;
+  min-height: 60vh;
 }
+
+nav { isolation: isolate; }
+footer { position: relative; z-index: 10; }
 
 /* ========== HERO ========== */
 #hero {
   display: flex;
   align-items: center;
-  padding: 120px 60px 60px;
-  min-height: 100vh;
+  justify-content: center;
+  padding: 100px 60px 60px;
+  min-height: 75vh;
   position: relative;
   overflow: hidden;
+  flex-direction: column;
+  text-align: center;
 }
 
 .hero-content {
   max-width: 800px;
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.72rem;
+  font-size: 5rem;
   font-weight: 700;
   letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 32px;
+  color: var(--white);
+  margin-bottom: 16px;
   opacity: 0;
   animation: slideUp 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-.hero-eyebrow::before {
-  content: '';
-  width: 30px; height: 1px;
-  background: var(--orange);
+.hero-eyebrow .name-highlight { color: var(--orange); }
+
+.eyebrow-line {
+  width: 40px; height: 1px;
+  background: var(--mid);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
 }
+.eyebrow-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--orange);
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+@keyframes scrollLine { to { left: 100%; } }
 
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 9vw, 10rem);
+  font-size: clamp(2rem, 9vw, 2rem);
   line-height: 0.88;
-  letter-spacing: 2px;
-  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
   opacity: 0;
   animation: slideUp 0.9s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  text-align: center;
 }
-.hero-title .line-orange { color: var(--orange); display: block; }
+.hero-title .line-orange { color: var(--orange); display: inline; }
 .hero-title .line-teal   { color: var(--teal);   display: block; }
 
 .hero-sub {
   font-size: 1.1rem;
   color: var(--mid);
-  max-width: 500px;
+  max-width: 600px;
   line-height: 1.8;
   font-weight: 400;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   opacity: 0;
   animation: slideUp 0.9s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+  text-align: center;
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
   opacity: 0;
   animation: slideUp 0.9s 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  margin-bottom: 0;
 }
 
 .btn-primary {
@@ -243,7 +293,7 @@ section {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   padding: 16px 36px;
-  border-radius: 50px;
+  border-radius: 30px;
   border: 1px solid var(--border);
   cursor: none;
   text-decoration: none;
@@ -253,41 +303,54 @@ section {
 }
 .btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-3px); }
 
-/* Hero 3D badge floating */
 .hero-badge {
-  position: absolute;
-  right: 8%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 320px;
+  /* position: absolute; */
+  /* bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   opacity: 0;
   animation: fadeIn 1s 1.2s forwards;
+  z-index: 2;
+  margin-top: auto;
+}
+.hero-badge-row1 {
+  display: flex;
+  gap: 10px;
+  /* flex-wrap: nowrap; */
+}
+.hero-badge-row2 {
+  display: flex;
+  justify-content: center;
 }
 
-/* Floating stat pills */
 .stat-pill {
-  display: inline-flex;
+  display:  inline-flex;
   align-items: center;
   gap: 12px;
   background: var(--card);
   border: 1px solid var(--border);
   backdrop-filter: blur(16px);
   border-radius: 60px;
-  padding: 14px 24px;
-  margin: 8px;
+  padding: 15px 50px;
+  margin: 25px;
   animation: float 4s ease-in-out infinite;
+  white-space: nowrap;
 }
 .stat-pill:nth-child(2) { animation-delay: 0.8s; }
 .stat-pill:nth-child(3) { animation-delay: 1.6s; }
 .stat-num-pill {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1;
   color: var(--orange);
 }
 .stat-pill:nth-child(2) .stat-num-pill { color: var(--teal); }
 .stat-pill:nth-child(3) .stat-num-pill { color: var(--yellow); }
-.stat-label-pill { font-size: 0.75rem; color: var(--mid); line-height: 1.3; max-width: 80px; }
+.stat-label-pill { font-size: 0.78rem; color: var(--mid); line-height: 1.3; max-width: none; font-weight: 600;white-space: nowrap; }
 
 @keyframes float {
   0%,100% { transform: translateY(0px); }
@@ -299,10 +362,11 @@ section {
 }
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* Scroll indicator */
 .scroll-hint {
-  position: absolute;
-  bottom: 40px; left: 60px;
+  /* position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%); */
   display: flex;
   align-items: center;
   gap: 12px;
@@ -312,6 +376,8 @@ section {
   color: var(--mid);
   opacity: 0;
   animation: fadeIn 1s 1.5s forwards;
+  /* white-space: nowrap; */
+  margin-top: 24px;
 }
 .scroll-line {
   width: 40px; height: 1px;
@@ -323,90 +389,310 @@ section {
   content: '';
   position: absolute;
   top: 0; left: -100%;
-  width: 100%; height: 100%;
+  width: 50%; height: 100%;
   background: var(--orange);
   animation: scrollLine 1.8s ease-in-out infinite;
 }
-@keyframes scrollLine { to { left: 100%; } }
+
+/* ========== TECH TICKER ========== */
+.ticker-wrap {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 30s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 0 28px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mid);
+  transition: color 0.3s;
+  cursor: default;
+}
+.ticker-item:hover { color: var(--white); }
+.ticker-icon { font-size: 1rem; flex-shrink: 0; }
+.ticker-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.td-o { background: var(--orange); }
+.td-t { background: var(--teal); }
+.td-y { background: var(--yellow); }
+.td-p { background: var(--pink); }
+
+/* Second ticker — opposite direction */
+.ticker-wrap-2 {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.ticker-track-2 {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll2 38s linear infinite;
+}
+.ticker-track-2:hover { animation-play-state: paused; }
+@keyframes tickerScroll2 {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.ticker-item-2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 0 24px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(136,146,164,0.5);
+  cursor: default;
+}
+.ticker-item-2:hover { color: var(--mid); }
 
 /* ========== ABOUT ========== */
 #about {
-  padding: 120px 60px;
+  padding: 60px 60px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  grid-template-columns: 1160px 1fr;
+  gap: 160px;
+  align-items: start;
 }
 
-.about-left { position: relative; }
-
-/* 3D card stack visual */
-.card-3d-stack {
+/* ===== ASTRONAUT SCENE ===== */
+.astronaut-scene {
   position: relative;
   width: 100%;
-  height: 420px;
-  perspective: 800px;
-}
-.c3d {
-  position: absolute;
-  border-radius: 24px;
+  height: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse 80% 60% at 50% 60%, rgba(255,107,53,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 50% 80%, rgba(0,229,204,0.05) 0%, transparent 70%);
+  border-radius: 28px;
   border: 1px solid var(--border);
-  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  overflow: hidden;
 }
-.c3d-1 {
-  width: 85%; height: 320px;
-  bottom: 0; left: 5%;
-  background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,107,53,0.05));
-  transform: rotateY(-8deg) rotateX(4deg) translateZ(0px);
-  border-color: rgba(255,107,53,0.2);
+
+/* Twinkling stars in scene */
+.scene-star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: starTwinkle ease-in-out infinite alternate;
 }
-.c3d-2 {
-  width: 80%; height: 300px;
-  bottom: 20px; left: 10%;
-  background: linear-gradient(135deg, rgba(0,229,204,0.1), rgba(0,229,204,0.03));
-  transform: rotateY(-4deg) rotateX(2deg) translateZ(20px);
-  border-color: rgba(0,229,204,0.15);
-}
-.c3d-3 {
-  width: 78%; height: 290px;
-  bottom: 40px; left: 11%;
-  background: var(--surface);
-  transform: rotateY(0deg) rotateX(0deg) translateZ(40px);
+.ss1 { width:3px;height:3px;top:10%;left:15%;animation-duration:1.8s; }
+.ss2 { width:2px;height:2px;top:20%;right:18%;animation-duration:2.4s;animation-delay:0.5s; }
+.ss3 { width:4px;height:4px;top:8%;right:30%;animation-duration:1.5s;animation-delay:1s; }
+.ss4 { width:2px;height:2px;bottom:30%;left:10%;animation-duration:2s;animation-delay:0.3s; }
+.ss5 { width:3px;height:3px;top:35%;left:80%;animation-duration:1.9s;animation-delay:0.8s; }
+@keyframes starTwinkle { from{opacity:0.2;transform:scale(0.8)} to{opacity:1;transform:scale(1.4)} }
+
+/* Astronaut wrapper — main float animation */
+.astronaut-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 36px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
+  align-items: center;
+  animation: astroFloat 3s ease-in-out infinite;
 }
-.card-3d-stack:hover .c3d-1 { transform: rotateY(-12deg) rotateX(6deg) translateZ(0px); }
-.card-3d-stack:hover .c3d-2 { transform: rotateY(-6deg) rotateX(3deg) translateZ(30px); }
-.card-3d-stack:hover .c3d-3 { transform: rotateY(0deg) rotateX(0deg) translateZ(60px) translateY(-8px); box-shadow: 0 60px 100px rgba(0,0,0,0.7); }
-
-.c3d-quote {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.2;
-  color: var(--white);
-  margin-bottom: 20px;
+@keyframes astroFloat {
+  0%   { transform: translateY(0px)   rotate(0deg); }
+  25%  { transform: translateY(-30px) rotate(-2deg); }
+  50%  { transform: translateY(-50px) rotate(1deg); }
+  75%  { transform: translateY(-25px) rotate(-1deg); }
+  100% { transform: translateY(0px)   rotate(0deg); }
 }
-.c3d-quote span { color: var(--orange); }
-.c3d-author { font-size: 0.75rem; color: var(--mid); letter-spacing: 2px; text-transform: uppercase; }
 
-/* Floating label top-left of card */
-.c3d-tag {
+.astronaut-svg {
+  width: 200px;
+  filter: drop-shadow(0 8px 32px rgba(255,107,53,0.3));
+}
+
+/* Jetpack thrust pulses */
+.thrust {
+  animation: thrustPulse 0.4s ease-in-out infinite alternate;
+  transform-origin: center top;
+}
+@keyframes thrustPulse {
+  from { transform: scaleY(1) scaleX(1); opacity:0.9; }
+  to   { transform: scaleY(1.4) scaleX(0.85); opacity:0.6; }
+}
+
+/* Ground shadow */
+.astro-shadow {
+  width: 80px; height: 14px;
+  background: radial-gradient(ellipse, rgba(255,107,53,0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: shadowPulse 3s ease-in-out infinite;
+  margin-top: -10px;
+}
+@keyframes shadowPulse {
+  0%   { transform: scaleX(1);   opacity: 0.6; }
+  50%  { transform: scaleX(0.4); opacity: 0.2; }
+  100% { transform: scaleX(1);   opacity: 0.6; }
+}
+
+/* QA Bubbles */
+.qa-bubble {
   position: absolute;
-  top: 20px; left: 20px;
-  background: var(--orange);
-  color: var(--bg);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 6px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
 }
 
-.about-right { }
+/* Each bubble pops on landing (bottom of float = 0s, top = 1.5s) */
+/* Landing happens at 0% and 100% of the 3s astroFloat cycle       */
+.b1 { top:12%; left:5%;   border-color:rgba(255,107,53,0.4); color:var(--orange); animation: bubblePop 3s 0.1s  ease-out infinite; }
+.b2 { top:12%; right:5%;  border-color:rgba(0,229,204,0.4);  color:var(--teal);   animation: bubblePop 3s 0.3s  ease-out infinite; }
+.b3 { top:30%; left:2%;   border-color:rgba(255,210,63,0.4); color:var(--yellow); animation: bubblePop 3s 0.5s  ease-out infinite; }
+.b4 { top:30%; right:2%;  border-color:rgba(255,107,53,0.3); color:var(--orange); animation: bubblePop 3s 0.7s  ease-out infinite; }
+.b5 { bottom:30%;left:3%; border-color:rgba(0,229,204,0.4);  color:var(--teal);   animation: bubblePop 3s 0.2s  ease-out infinite; }
+.b6 { bottom:30%;right:3%;border-color:rgba(255,210,63,0.3); color:var(--yellow); animation: bubblePop 3s 0.4s  ease-out infinite; }
+.b7 { bottom:15%;left:8%; border-color:rgba(255,107,53,0.4); color:var(--orange); animation: bubblePop 3s 0.6s  ease-out infinite; }
+.b8 { bottom:15%;right:8%;border-color:rgba(0,229,204,0.4);  color:var(--teal);   animation: bubblePop 3s 0.8s  ease-out infinite; }
+
+@keyframes bubblePop {
+  0%   { opacity:0; transform:scale(0.6) translateY(10px); }
+  10%  { opacity:1; transform:scale(1.08) translateY(-4px); }
+  20%  { opacity:1; transform:scale(1) translateY(0); }
+  70%  { opacity:1; transform:scale(1) translateY(0); }
+  90%  { opacity:0; transform:scale(0.9) translateY(-8px); }
+  100% { opacity:0; transform:scale(0.6) translateY(10px); }
+}
+
+/* ---- About Right ---- */
+.about-right { padding-top: 8px; }
+
+.about-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(0,229,204,0.08);
+  border: 1px solid rgba(0,229,204,0.2);
+  padding: 7px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.about-eyebrow svg { width: 14px; height: 14px; }
+
+.about-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 3.5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+.about-heading .ah-o { color: var(--orange); }
+.about-heading .ah-t { color: var(--teal); }
+
+.about-para {
+  font-size: 1rem;
+  color: var(--mid);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.about-para strong { color: var(--white); font-weight: 700; }
+.about-para .hl-o { color: var(--orange); font-weight: 700; }
+.about-para .hl-t { color: var(--teal); font-weight: 700; }
+
+/* Tech skill chips */
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 32px;
+}
+.about-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--mid);
+  transition: all 0.3s;
+  cursor: default;
+}
+.about-chip:hover { border-color: var(--orange); color: var(--white); background: rgba(255,107,53,0.08); transform: translateY(-2px); }
+.about-chip span { font-size: 1rem; }
+
+/* CTA buttons row */
+.about-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 80px;
+}
+.about-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 14px 28px;
+  border-radius: 50px;
+  cursor: none;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.about-cta-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
 .section-label {
   font-size: 0.7rem;
   font-weight: 800;
@@ -426,27 +712,12 @@ section {
   margin-bottom: 28px;
   letter-spacing: 1px;
 }
-.section-body {
-  font-size: 1rem;
-  color: var(--mid);
-  line-height: 1.85;
-  font-weight: 400;
-  margin-bottom: 20px;
-}
-
-/* Domain tags */
+.section-body { font-size: 1rem; color: var(--mid); line-height: 1.85; font-weight: 400; margin-bottom: 20px; }
 .domain-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 .dtag {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 10px 22px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  transition: all 0.3s;
-  cursor: default;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card); transition: all 0.3s; cursor: default;
 }
 .dtag:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
 .dtag-t:hover { border-color: var(--teal); color: var(--teal); }
@@ -454,379 +725,136 @@ section {
 
 /* ========== SKILLS ========== */
 #skills {
-  padding: 120px 60px;
+  padding: 100px 5px;
   background: linear-gradient(180deg, transparent 0%, rgba(255,107,53,0.03) 50%, transparent 100%);
 }
-.skills-header { text-align: center; margin-bottom: 80px; }
+.skills-header { text-align: center; margin-bottom: 20px; }
 .skills-header .section-label { justify-content: center; }
 .skills-header .section-label::before { display: none; }
 .skills-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,5vw,6rem); letter-spacing: 2px; }
-
-/* 3D Skill orbit rings */
-.skills-orbit {
-  position: relative;
-  width: 520px;
-  height: 520px;
-  margin: 0 auto 80px;
-}
+.skills-orbit { position: relative; width: 520px; height: 520px; margin: 0 auto 80px; }
 .orbit-center {
-  position: absolute;
-  top: 50%; left: 50%;
+  position: absolute; top: 10%; left: 50%;
   transform: translate(-50%, -50%);
   width: 120px; height: 120px;
   background: radial-gradient(circle, rgba(255,107,53,0.3) 0%, rgba(255,107,53,0.05) 70%);
   border: 2px solid rgba(255,107,53,0.4);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  color: var(--orange);
-  text-align: center;
-  line-height: 1.2;
-  z-index: 5;
+  font-size: 1.1rem; letter-spacing: 2px; color: var(--orange);
+  text-align: center; line-height: 1.2; z-index: 5;
 }
 .orbit-ring {
-  position: absolute;
-  top: 50%; left: 50%;
-  border-radius: 50%;
-  border: 1px solid;
+  position: absolute; top: 50%; left: 50%;
+  border-radius: 50%; border: 1px solid;
   transform-style: preserve-3d;
   animation: orbitSpin linear infinite;
 }
-.orbit-ring-1 {
-  width: 200px; height: 200px;
-  margin: -100px 0 0 -100px;
-  border-color: rgba(255,107,53,0.3);
-  animation-duration: 12s;
-}
-.orbit-ring-2 {
-  width: 320px; height: 320px;
-  margin: -160px 0 0 -160px;
-  border-color: rgba(0,229,204,0.2);
-  animation-duration: 20s;
-  animation-direction: reverse;
-}
-.orbit-ring-3 {
-  width: 460px; height: 460px;
-  margin: -230px 0 0 -230px;
-  border-color: rgba(255,210,63,0.15);
-  animation-duration: 30s;
-}
-@keyframes orbitSpin { from { transform: rotateZ(0deg) rotateX(70deg); } to { transform: rotateZ(360deg) rotateX(70deg); } }
-
-/* Orbit dots (skill badges on rings) */
-.orbit-dot {
-  position: absolute;
-  top: 50%; left: 50%;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  padding: 6px 14px;
-  border-radius: 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--white);
-  transform-origin: center;
-}
-
-/* Skill grid below orbit */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+.orbit-ring-1 { width:200px;height:200px;margin:-100px 0 0 -100px;border-color:rgba(255,107,53,0.3);animation-duration:12s; }
+.orbit-ring-2 { width:320px;height:320px;margin:-160px 0 0 -160px;border-color:rgba(0,229,204,0.2);animation-duration:20s;animation-direction:reverse; }
+.orbit-ring-3 { width:460px;height:460px;margin:-230px 0 0 -230px;border-color:rgba(255,210,63,0.15);animation-duration:30s; }
+@keyframes orbitSpin { from{transform:rotateZ(0deg) rotateX(70deg)} to{transform:rotateZ(360deg) rotateX(70deg)} }
+.skills-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1100px;margin:auto; }
 .skill-cell {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--card); border: 1px solid var(--border);
   padding: 28px 24px;
   transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-  position: relative;
-  overflow: hidden;
-  cursor: default;
+  position: relative; overflow: hidden; cursor: default;
 }
 .skill-cell::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: var(--orange);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s;
+  content:''; position:absolute; top:0;left:0; width:100%;height:2px;
+  background:var(--orange); transform:scaleX(0); transform-origin:left; transition:transform 0.4s;
 }
-.skill-cell:hover::before { transform: scaleX(1); }
-.skill-cell:hover { background: rgba(255,107,53,0.06); transform: translateY(-4px); }
-.skill-cell.tc::before { background: var(--teal); }
-.skill-cell.tc:hover { background: rgba(0,229,204,0.05); }
-.skill-cell.yc::before { background: var(--yellow); }
-.skill-cell.yc:hover { background: rgba(255,210,63,0.05); }
-.skill-cell.pc::before { background: var(--pink); }
-.skill-cell.pc:hover { background: rgba(255,62,108,0.05); }
-
-.skill-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
-.skill-name { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; color: var(--white); margin-bottom: 4px; }
-.skill-sub  { font-size: 0.7rem; color: var(--mid); }
+.skill-cell:hover::before { transform:scaleX(1); }
+.skill-cell:hover { background:rgba(255,107,53,0.06); transform:translateY(-4px); }
+.skill-cell.tc::before { background:var(--teal); }
+.skill-cell.tc:hover { background:rgba(0,229,204,0.05); }
+.skill-cell.yc::before { background:var(--yellow); }
+.skill-cell.yc:hover { background:rgba(255,210,63,0.05); }
+.skill-cell.pc::before { background:var(--pink); }
+.skill-cell.pc:hover { background:rgba(255,62,108,0.05); }
+.skill-icon { font-size:1.8rem;margin-bottom:12px;display:block; }
+.skill-name { font-size:0.82rem;font-weight:700;letter-spacing:0.5px;color:var(--white);margin-bottom:4px; }
+.skill-sub  { font-size:0.7rem;color:var(--mid); }
 
 /* ========== PROJECTS ========== */
-#projects {
-  padding: 120px 60px;
-}
-.projects-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 60px;
-}
-.projects-count {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 10vw, 12rem);
-  line-height: 1;
-  color: rgba(255,255,255,0.04);
-  user-select: none;
-  letter-spacing: -4px;
-}
-
-/* Featured project - full width */
+#projects { padding: 120px 60px; }
+.projects-header { display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px; }
+.projects-count { font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,10vw,12rem);line-height:1;color:rgba(255,255,255,0.04);user-select:none;letter-spacing:-4px; }
 .project-featured {
-  background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.03) 60%, rgba(0,229,204,0.05) 100%);
+  background: linear-gradient(135deg,rgba(255,107,53,0.1) 0%,rgba(255,107,53,0.03) 60%,rgba(0,229,204,0.05) 100%);
   border: 1px solid rgba(255,107,53,0.2);
-  border-radius: 28px;
-  padding: 56px;
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
+  border-radius: 28px; padding: 56px; margin-bottom: 24px;
+  position: relative; overflow: hidden;
   transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 60px;
-  align-items: center;
+  display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
 }
 .project-featured::before {
-  content: '';
-  position: absolute;
-  top: -100px; right: -100px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  transition: all 0.5s;
+  content:''; position:absolute; top:-100px;right:-100px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(255,107,53,0.08) 0%,transparent 70%);
+  border-radius:50%; transition:all 0.5s;
 }
-.project-featured:hover::before { transform: scale(1.3); }
-.project-featured:hover { border-color: rgba(255,107,53,0.4); transform: translateY(-4px); box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,107,53,0.1); }
-
-.pf-tag {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--orange);
-  background: rgba(255,107,53,0.12);
-  border: 1px solid rgba(255,107,53,0.3);
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-.pf-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  line-height: 1.1;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-}
-.pf-desc {
-  font-size: 0.92rem;
-  color: var(--mid);
-  line-height: 1.8;
-  max-width: 600px;
-  margin-bottom: 28px;
-}
-.pf-metrics {
-  display: flex;
-  gap: 40px;
-}
-.pf-metric-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem;
-  color: var(--orange);
-  line-height: 1;
-  display: block;
-}
-.pf-metric-label { font-size: 0.68rem; color: var(--mid); letter-spacing: 1px; text-transform: uppercase; }
-
-.pf-tech { display: flex; flex-direction: column; gap: 8px; min-width: 160px; }
-.tech-chip {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  color: var(--mid);
-  text-align: center;
-  transition: all 0.3s;
-}
-.tech-chip:hover { background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.3); color: var(--orange); }
-
-/* Project cards grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.project-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-  cursor: default;
-}
-.project-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 60%, rgba(0,229,204,0.04) 100%);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-.project-card:hover { transform: translateY(-8px); border-color: rgba(0,229,204,0.2); box-shadow: 0 32px 64px rgba(0,0,0,0.4); }
-.project-card:hover::after { opacity: 1; }
-.project-card.pc3 { border-color: rgba(123,47,190,0.15); }
-.project-card.pc3:hover { border-color: rgba(123,47,190,0.4); }
-.project-card.pc3::after { background: linear-gradient(135deg, transparent 60%, rgba(123,47,190,0.04) 100%); }
-
-.pc-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 4rem;
-  color: rgba(255,255,255,0.05);
-  line-height: 1;
-  position: absolute;
-  top: 20px; right: 28px;
-}
-.pc-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
-.pc-tag {
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 16px;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-.pc-tag-teal { background: rgba(0,229,204,0.12); color: var(--teal); border: 1px solid rgba(0,229,204,0.2); }
-.pc-tag-purple { background: rgba(123,47,190,0.12); color: #B07FE0; border: 1px solid rgba(123,47,190,0.2); }
-.pc-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.5px; margin-bottom: 12px; line-height: 1.2; }
-.pc-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.75; margin-bottom: 20px; }
-.pc-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.pc-pill { font-size: 0.65rem; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--mid); }
-.pc-metrics-row { display: flex; gap: 24px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
-.pc-metric-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--teal); display: block; line-height: 1; }
-.project-card.pc3 .pc-metric-val { color: #B07FE0; }
-.pc-metric-lbl { font-size: 0.65rem; color: var(--mid); text-transform: uppercase; letter-spacing: 1px; }
+.project-featured:hover::before { transform:scale(1.3); }
+.project-featured:hover { border-color:rgba(255,107,53,0.4);transform:translateY(-4px);box-shadow:0 40px 80px rgba(0,0,0,0.4); }
+.pf-tag { display:inline-block;font-size:0.65rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.3);padding:6px 16px;border-radius:20px;margin-bottom:20px; }
+.pf-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1;letter-spacing:1px;margin-bottom:16px; }
+.pf-desc { font-size:0.92rem;color:var(--mid);line-height:1.8;max-width:600px;margin-bottom:28px; }
+.pf-metrics { display:flex;gap:40px; }
+.pf-metric-val { font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--orange);line-height:1;display:block; }
+.pf-metric-label { font-size:0.68rem;color:var(--mid);letter-spacing:1px;text-transform:uppercase; }
+.pf-tech { display:flex;flex-direction:column;gap:8px;min-width:160px; }
+.tech-chip { font-size:0.72rem;font-weight:700;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--mid);text-align:center;transition:all 0.3s; }
+.tech-chip:hover { background:rgba(255,107,53,0.1);border-color:rgba(255,107,53,0.3);color:var(--orange); }
+.projects-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px; }
+.project-card { background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px;position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);cursor:default; }
+.project-card::after { content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(0,229,204,0.04) 100%);opacity:0;transition:opacity 0.4s; }
+.project-card:hover { transform:translateY(-8px);border-color:rgba(0,229,204,0.2);box-shadow:0 32px 64px rgba(0,0,0,0.4); }
+.project-card:hover::after { opacity:1; }
+.project-card.pc3 { border-color:rgba(123,47,190,0.15); }
+.project-card.pc3:hover { border-color:rgba(123,47,190,0.4); }
+.project-card.pc3::after { background:linear-gradient(135deg,transparent 60%,rgba(123,47,190,0.04) 100%); }
+.pc-num { font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,255,255,0.05);line-height:1;position:absolute;top:20px;right:28px; }
+.pc-icon { font-size:2rem;margin-bottom:16px;display:block; }
+.pc-tag { font-size:0.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:16px;display:inline-block;margin-bottom:12px; }
+.pc-tag-teal { background:rgba(0,229,204,0.12);color:var(--teal);border:1px solid rgba(0,229,204,0.2); }
+.pc-tag-purple { background:rgba(123,47,190,0.12);color:#B07FE0;border:1px solid rgba(123,47,190,0.2); }
+.pc-title { font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.5px;margin-bottom:12px;line-height:1.2; }
+.pc-desc { font-size:0.85rem;color:var(--mid);line-height:1.75;margin-bottom:20px; }
+.pc-pills { display:flex;flex-wrap:wrap;gap:6px; }
+.pc-pill { font-size:0.65rem;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--mid); }
+.pc-metrics-row { display:flex;gap:24px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border); }
+.pc-metric-val { font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--teal);display:block;line-height:1; }
+.project-card.pc3 .pc-metric-val { color:#B07FE0; }
+.pc-metric-lbl { font-size:0.65rem;color:var(--mid);text-transform:uppercase;letter-spacing:1px; }
 
 /* ========== CONTACT ========== */
-#contact {
-  padding: 120px 60px;
-  position: relative;
-}
-.contact-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.contact-left { }
-.contact-big-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 6vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: 2px;
-  margin-bottom: 32px;
-}
-.contact-big-text span { color: var(--orange); }
-.contact-body { font-size: 1rem; color: var(--mid); line-height: 1.85; margin-bottom: 40px; max-width: 440px; }
-
-.contact-links { display: flex; flex-direction: column; gap: 16px; }
-.clink {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 24px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  text-decoration: none;
-  color: var(--white);
-  transition: all 0.3s;
-}
-.clink:hover { border-color: var(--orange); background: rgba(255,107,53,0.06); transform: translateX(8px); }
-.clink-icon {
-  width: 42px; height: 42px;
-  background: rgba(255,107,53,0.12);
-  border: 1px solid rgba(255,107,53,0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-.clink-text { font-size: 0.88rem; color: var(--mid); }
-.clink-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); margin-bottom: 2px; }
-
-/* CHAT BOX */
+/* #contact { padding:120px 60px;position:relative;text-align: center; }
+.contact-inner { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;  justify-items: center; }
+.contact-big-text { font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,6vw,7rem);line-height:0.9;letter-spacing:2px;margin-bottom:32px; }
+.contact-big-text span { color:var(--orange); }
+.contact-body { font-size:1rem;color:var(--mid);line-height:1.85;margin-bottom:40px;max-width:440px; }
+.contact-links { display:flex;flex-direction:column;gap:16px;  align-items: center;width: 100%; }
+.clink { display:flex;align-items:center;gap:16px;padding:18px 24px;background:var(--card);border:1px solid var(--border);border-radius:16px;text-decoration:none;color:var(--white);transition:all 0.3s; }
+.clink:hover { border-color:var(--orange);background:rgba(255,107,53,0.06);transform:translateX(8px); }
+.clink-icon { width:42px;height:42px;background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0; }
+.clink-text { font-size:0.88rem;color:var(--mid); }
+.clink-label { font-size:0.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:2px; }
 .contact-right { }
-.chat-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-}
-.chat-hdr {
-  background: linear-gradient(90deg, rgba(255,107,53,0.15), rgba(0,229,204,0.08));
-  border-bottom: 1px solid var(--border);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.chat-av {
-  width: 40px; height: 40px;
-  background: var(--orange);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-}
-.chat-hdr-name { font-weight: 700; font-size: 0.9rem; }
-.chat-hdr-status { font-size: 0.72rem; color: var(--teal); display: flex; align-items: center; gap: 6px; margin-top: 2px; }
-.chat-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; animation: chatPulse 1.8s ease-in-out infinite; }
+.chat-wrap { background:var(--surface);border:1px solid var(--border);border-radius:28px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5); }
+.chat-hdr { background:linear-gradient(90deg,rgba(255,107,53,0.15),rgba(0,229,204,0.08));border-bottom:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;gap:14px; }
+.chat-av { width:40px;height:40px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem; }
+.chat-hdr-name { font-weight:700;font-size:0.9rem; }
+.chat-hdr-status { font-size:0.72rem;color:var(--teal);display:flex;align-items:center;gap:6px;margin-top:2px; }
+.chat-dot { width:6px;height:6px;background:var(--teal);border-radius:50%;animation:chatPulse 1.8s ease-in-out infinite; }
 @keyframes chatPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
-
-.chat-msgs {
-  padding: 20px;
-  height: 260px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.chat-msgs::-webkit-scrollbar { width: 3px; }
-.chat-msgs::-webkit-scrollbar-thumb { background: rgba(255,107,53,0.3); }
-
-.cmsg { display: flex; gap: 8px; max-width: 82%; animation: msgPop 0.3s cubic-bezier(0.16,1,0.3,1); }
-@keyframes msgPop { from { opacity:0; transform:translateY(8px) scale(0.97); } to { opacity:1; transform:none; } }
-.cmsg.sent { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msgs { padding:20px;height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:12px; }
+.chat-msgs::-webkit-scrollbar { width:3px; }
+.chat-msgs::-webkit-scrollbar-thumb { background:rgba(255,107,53,0.3); }
+.cmsg { display:flex;gap:8px;max-width:82%;animation:msgPop 0.3s cubic-bezier(0.16,1,0.3,1); }
+@keyframes msgPop { from{opacity:0;transform:translateY(8px) scale(0.97)} to{opacity:1;transform:none} }
+.cmsg.sent { align-self:flex-end;flex-direction:row-reverse; }
 .cmsg-av { width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;margin-top:4px; }
 .cmsg-av.o { background:var(--orange);color:var(--bg); }
 .cmsg-av.u { background:var(--teal);color:var(--bg); }
@@ -834,52 +862,268 @@ section {
 .cmsg.recv .cmsg-bubble { background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--white);border-bottom-left-radius:4px; }
 .cmsg.sent .cmsg-bubble { background:var(--orange);color:var(--bg);font-weight:500;border-bottom-right-radius:4px; }
 .cmsg-time { font-size:0.6rem;color:var(--mid);margin-top:4px;text-align:right; }
-
 .typing-ind { display:flex;gap:4px;align-items:center;padding:10px 15px;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:16px;border-bottom-left-radius:4px;width:fit-content; }
 .t-dot { width:5px;height:5px;background:var(--mid);border-radius:50%;animation:tBounce 1.1s ease-in-out infinite; }
 .t-dot:nth-child(2){animation-delay:.18s}
 .t-dot:nth-child(3){animation-delay:.36s}
 @keyframes tBounce{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1}}
-
-.chat-inp-row {
-  display:flex;gap:10px;padding:16px;
-  border-top:1px solid var(--border);
-  background:rgba(255,255,255,0.02);
-}
-.chat-inp {
-  flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);
-  border-radius:30px;padding:11px 18px;
-  font-family:'Cabinet Grotesk',sans-serif;font-size:0.85rem;
-  color:var(--white);outline:none;transition:border-color 0.3s;
-  cursor:none;
-}
+.chat-inp-row { display:flex;gap:10px;padding:16px;border-top:1px solid var(--border);background:rgba(255,255,255,0.02); }
+.chat-inp { flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:30px;padding:11px 18px;font-family:'Cabinet Grotesk',sans-serif;font-size:0.85rem;color:var(--white);outline:none;transition:border-color 0.3s;cursor:none; }
 .chat-inp:focus { border-color:var(--orange); }
 .chat-inp::placeholder { color:var(--mid); }
-.chat-send {
-  width:42px;height:42px;background:var(--orange);border:none;border-radius:50%;
-  cursor:none;display:flex;align-items:center;justify-content:center;
-  transition:all 0.3s;flex-shrink:0;
-}
+.chat-send { width:42px;height:42px;background:var(--orange);border:none;border-radius:50%;cursor:none;display:flex;align-items:center;justify-content:center;transition:all 0.3s;flex-shrink:0; }
 .chat-send:hover { background:var(--teal);transform:scale(1.1); }
-.chat-send svg { width:15px;height:15px;fill:var(--bg); }
+.chat-send svg { width:15px;height:15px;fill:var(--bg); } */
+
+/* ========== CONTACT REDESIGN ========== */
+#contact {
+  padding: 100px 60px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: auto;
+}
+
+.contact-center {
+  text-align: center;
+  max-width: 960px;
+  width: 100%;
+}
+
+.contact-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(0,229,204,0.08);
+  border: 1px solid rgba(0,229,204,0.2);
+  padding: 8px 20px;
+  border-radius: 30px;
+  margin-bottom: 28px;
+}
+
+.contact-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.ch-o { color: var(--orange); }
+.ch-t { color: var(--teal); }
+
+.contact-sub {
+  font-size: 1rem;
+  color: var(--mid);
+  line-height: 1.75;
+  max-width: 540px;
+  margin: 0 auto 48px;
+}
+
+/* Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 28px;
+  text-align: left;
+}
+
+/* Form box */
+.contact-form-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+}
+.cfb-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+  color: var(--white);
+}
+.cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.cf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+.cf-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+.cf-label span { color: var(--orange); }
+.cf-input, .cf-textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.88rem;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+.cf-input::placeholder, .cf-textarea::placeholder { color: rgba(136,146,164,0.4); }
+.cf-input:focus, .cf-textarea:focus {
+  border-color: var(--orange);
+  background: rgba(255,107,53,0.04);
+}
+.cf-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+.cf-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--bg);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  border-radius: 10px;
+  border: none;
+  cursor: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.cf-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--teal);
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.cf-submit:hover::before { transform: translateX(0); }
+.cf-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,107,53,0.3); }
+.cf-submit span, .cf-submit svg { position: relative; z-index: 1; }
+.cf-success {
+  display: none;
+  margin-top: 14px;
+  padding: 14px;
+  background: rgba(0,229,204,0.08);
+  border: 1px solid rgba(0,229,204,0.2);
+  border-radius: 10px;
+  color: var(--teal);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Info box */
+.contact-info-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.cib-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.cib-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+.cib-item:hover { border-color: var(--orange); background: rgba(255,107,53,0.05); }
+.cib-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,107,53,0.12);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.cib-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); margin-bottom: 2px; }
+.cib-value { font-size: 0.82rem; color: var(--mid); }
+
+/* Socials */
+.cib-socials { display: flex; gap: 10px; margin-bottom: 24px; }
+.cib-social {
+  width: 42px; height: 42px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--mid);
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: none;
+}
+.cib-social:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-3px); }
+
+/* Response card */
+.cib-response {
+  background: linear-gradient(135deg, rgba(0,229,204,0.06), rgba(255,107,53,0.04));
+  border: 1px solid rgba(0,229,204,0.15);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: auto;
+}
+.cib-response-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+.cib-response-body { font-size: 0.78rem; color: var(--mid); line-height: 1.6; }
+
+.contact-response {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--mid);
+  margin-top: 28px;
+  letter-spacing: 0.5px;
+}
 
 /* ========== FOOTER ========== */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 32px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  z-index: 10;
-}
+footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10; }
 .footer-logo { font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--orange); }
 .footer-copy { font-size:0.75rem;color:var(--mid); }
-.footer-back {
-  font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--mid);background:none;border:1px solid var(--border);
-  padding:10px 20px;border-radius:30px;cursor:none;transition:all 0.3s;
-}
+.footer-back { font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid);background:none;border:1px solid var(--border);padding:10px 20px;border-radius:30px;cursor:none;transition:all 0.3s; }
 .footer-back:hover { color:var(--orange);border-color:var(--orange); }
 
 /* ========== SCROLL REVEAL ========== */
@@ -889,60 +1133,21 @@ footer {
 .reveal.on { opacity:1;transform:none; }
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
 
-/* ========== 3D STATS ROW ========== */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 2px;
-  margin: 0 60px 0;
-  position: relative;
-  z-index: 10;
-}
-.stat-block {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 40px 32px;
-  text-align: center;
-  transition: all 0.4s;
-  position: relative;
-  overflow: hidden;
-}
-.stat-block::before {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s;
-}
-.stat-block:nth-child(1)::before { background:var(--orange); }
-.stat-block:nth-child(2)::before { background:var(--teal); }
-.stat-block:nth-child(3)::before { background:var(--yellow); }
-.stat-block:nth-child(4)::before { background:var(--pink); }
-.stat-block:hover::before { transform:scaleX(1); }
-.stat-block:hover { background:rgba(255,255,255,0.06); transform:translateY(-4px); }
-.stat-big { font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;display:block;margin-bottom:8px; }
-.stat-block:nth-child(1) .stat-big { color:var(--orange); }
-.stat-block:nth-child(2) .stat-big { color:var(--teal); }
-.stat-block:nth-child(3) .stat-big { color:var(--yellow); }
-.stat-block:nth-child(4) .stat-big { color:var(--pink); }
-.stat-desc { font-size:0.8rem;color:var(--mid);line-height:1.4; }
-
 /* ========== RESPONSIVE ========== */
 @media(max-width:900px){
   nav { padding:16px 24px; }
   .nav-links { display:none; }
   #hero { padding:100px 24px 60px; }
   .hero-badge { display:none; }
-  #about,#projects,#contact { padding:80px 24px; grid-template-columns:1fr; }
+  #about { padding:80px 24px; grid-template-columns:1fr; gap:40px; }
+  #projects,#contact { padding:80px 24px; grid-template-columns:1fr; }
   .projects-header { flex-direction:column;align-items:flex-start;gap:0; }
   .projects-grid { grid-template-columns:1fr; }
-  .stats-row { grid-template-columns:1fr 1fr;margin:0 24px; }
   footer { padding:24px;flex-direction:column;gap:16px;text-align:center; }
   .project-featured { grid-template-columns:1fr;padding:32px; }
   .skills-grid { grid-template-columns:repeat(2,1fr); }
   .contact-inner { grid-template-columns:1fr; }
+  .ticker-wrap,.ticker-wrap-2 { -webkit-mask-image:linear-gradient(90deg,transparent 0%,black 5%,black 95%,transparent 100%); }
 }
 </style>
 </head>
@@ -950,13 +1155,15 @@ footer {
 
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
-
-<!-- THREE.JS CANVAS -->
 <canvas id="bg-canvas"></canvas>
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">Q<span>E</span></a>
+  <a href="#hero" class="nav-logo">Surojit<span> Sen</span></a>
+   <!-- <a href="#hero" class="nav-logo">
+    <div class="nav-logo-badge">SS</div>
+    <span class="nav-logo-name">Surojit <span>Sen</span></span>
+  </a> -->
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -969,14 +1176,16 @@ footer {
 <!-- ========== HERO ========== -->
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">SDET &amp; Test Architect — 8+ Years</div>
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      Hi, I'm <span class="name-highlight">&nbsp;Surojit</span>
+      <div class="eyebrow-line"></div>
+    </div>
     <h1 class="hero-title">
-      <span>QUALITY</span>
-      <span class="line-orange">ENGINEERED</span>
-      <span class="line-teal">DIFFERENT.</span>
+      <span>SDET <span style="color:var(--mid)">&</span> <span class="line-orange" style="display:inline">Test Architect</span></span>
     </h1>
-    <p class="hero-sub">I build scalable quality engineering systems that eliminate bottlenecks, accelerate delivery, and ensure absolute data integrity. I don't just detect failures — I design systems where failures don't survive.</p>
-    <div class="hero-actions">
+    <p class="hero-sub">9+ years engineering quality at scale. I don't just find bugs — I architect systems where they never get the chance to exist.</p>
+    <!-- <div class="hero-actions">
       <a href="#projects" class="btn-primary">
         <span>View My Work</span>
         <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -984,74 +1193,91 @@ footer {
       <a href="#contact" class="btn-ghost">
         <span>Get In Touch</span>
       </a>
-    </div>
+    </div> -->
   </div>
 
-  <!-- Floating stat pills -->
+  <!-- Pills above scroll hint -->
+  <!-- Replace your hero-badge div with this -->
   <div class="hero-badge">
-    <div class="stat-pill">
-      <span class="stat-num-pill">8+</span>
-      <span class="stat-label-pill">Years of Experience</span>
+    <div class="hero-badge-row1">
+      <div class="stat-pill">
+        <span class="stat-num-pill">9+</span>
+        <span class="stat-label-pill">Years Helping Teams Ship</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num-pill">3</span>
+        <span class="stat-label-pill">Domains of Real Experience</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num-pill">1</span>
+        <span class="stat-label-pill">Goal — Quality for Everyone</span>
+      </div>
     </div>
-    <div class="stat-pill">
-      <span class="stat-num-pill">80%</span>
-      <span class="stat-label-pill">Execution Time Reduced</span>
-    </div>
-    <div class="stat-pill">
-      <span class="stat-num-pill">3</span>
-      <span class="stat-label-pill">Industries Mastered</span>
+    <div class="hero-badge-row2">
+      <div class="stat-pill">
+        <span class="stat-num-pill">🚀</span>
+        <span class="stat-label-pill">Automation First Approach</span>
+      </div>
     </div>
   </div>
 
   <div class="scroll-hint">
     <div class="scroll-line"></div>
     Scroll to explore
+    <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- ========== STATS ROW ========== -->
-<div class="stats-row">
-  <div class="stat-block reveal d1">
-    <span class="stat-big">8+</span>
-    <span class="stat-desc">Years Quality Engineering</span>
-  </div>
-  <div class="stat-block reveal d2">
-    <span class="stat-big">80%</span>
-    <span class="stat-desc">Execution Time Reduction</span>
-  </div>
-  <div class="stat-block reveal d3">
-    <span class="stat-big">70%</span>
-    <span class="stat-desc">Testing Efficiency Gained</span>
-  </div>
-  <div class="stat-block reveal d4">
-    <span class="stat-big">3×</span>
-    <span class="stat-desc">Faster Release Cycles</span>
-  </div>
-</div>
-
 <!-- ========== ABOUT ========== -->
 <section id="about">
-  <div class="about-left reveal rx">
-    <div class="card-3d-stack">
-      <div class="c3d c3d-1"></div>
-      <div class="c3d c3d-2"></div>
-      <div class="c3d c3d-3">
-        <div class="c3d-tag">Philosophy</div>
-        <div class="c3d-quote">"Quality isn't a checkpoint — it's a <span>system</span> I build."</div>
-        <div class="c3d-author">— My Core Belief</div>
-      </div>
-    </div>
-  </div>
+  <!-- RIGHT: Rich content -->
   <div class="about-right">
-    <div class="section-label reveal d1">About Me</div>
-    <h2 class="section-title reveal d2">QUALITY<br>ENGINEER<br>TURNED<br>ARCHITECT.</h2>
-    <p class="section-body reveal d3">I am a Quality Engineer turned SDET and Test Architect with over 8 years of experience in building scalable, efficient, and reliable testing ecosystems. My expertise lies in designing end-to-end quality engineering solutions that go beyond traditional testing.</p>
-    <p class="section-body reveal d4">I specialize in automation and backend validation, with strong hands-on experience in Python (Playwright, Selenium), SQL, and modern data platforms like Snowflake. I have successfully built automation frameworks from scratch, reducing execution time by up to 80%.</p>
-    <div class="domain-tags reveal d5">
-      <span class="dtag">Healthcare</span>
-      <span class="dtag dtag-t">Finance</span>
-      <span class="dtag dtag-y">Insurance</span>
+
+    <div class="about-eyebrow reveal d1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      About Me
     </div>
+
+    <h2 class="about-heading reveal d2">
+      Reducing <span class="ah-o">Risk <span class="ah-t">Accelerating Delivery.</span>
+    </h2>
+
+    <p class="about-para reveal d3">
+      I'm a <strong>Quality Engineer evolved into an SDET and Test Architect</strong> with <span class="hl-o">9+ years</span> of experience delivering end-to-end quality engineering solutions across enterprise applications, data platforms, and modern CI/CD ecosystems.My expertise spans both
+      <strong>Manual and Automation Testing, including functional testing, API testing, database validation, ETL testing, and scalable automation framework development.</strong>
+    </p>
+    <p class="about-para reveal d5">
+      Over the years, I have built robust quality processes and intelligent automation solutions that ensure reliability, 
+      data integrity, and seamless user experiences across complex systems. Alongside traditional testing, I actively integrate<strong> AI-driven capabilities into quality engineering workflows</strong> — including smart validation, OCR-based verification, intelligent reporting, anomaly detection, and automated insights. <span class="hl-t">CI/CD pipelines.</span>
+    </p>
+    <p class="about-para reveal d5">
+      I believe quality is not a phase — it's an <strong>engineered system</strong>. My focus is on building <strong>scalable, efficient, and AI-enabled quality solutions</strong> that help organizations <span class="hl-o">release faster, reduce risk, and deliver reliable products with confidence.</span>.
+    </p>
+
+    <!-- Tech chips -->
+    <!-- <div class="about-chips reveal d5">
+      <span class="about-chip"><span>🐍</span> Python</span>
+      <span class="about-chip"><span>🎭</span> Playwright</span>
+      <span class="about-chip"><span>❄️</span> Snowflake</span>
+      <span class="about-chip"><span>🧪</span> pytest</span>
+      <span class="about-chip"><span>🗄️</span> SQL</span>
+      <span class="about-chip"><span>⚙️</span> Jenkins</span>
+      <span class="about-chip"><span>🐙</span> GitHub Actions</span>
+      <span class="about-chip"><span>🤖</span> AI-Driven QA</span>
+    </div> -->
+
+    <!-- CTA -->
+    <div class="about-cta reveal d6">
+      <a href="#projects" class="btn-primary">
+        <span>View My Work</span>
+        <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contact" class="about-cta-ghost">
+        <svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        Get In Touch
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -1061,76 +1287,25 @@ footer {
     <div class="section-label">Core Expertise</div>
     <h2 class="skills-title reveal">SKILLS &amp; TOOLS</h2>
   </div>
-
-  <!-- Orbit visual -->
-  <div class="skills-orbit reveal">
+  <!-- <div class="skills-orbit reveal">
     <div class="orbit-ring orbit-ring-1"></div>
     <div class="orbit-ring orbit-ring-2"></div>
     <div class="orbit-ring orbit-ring-3"></div>
     <div class="orbit-center">TEST<br>ARCHITECT</div>
-  </div>
-
+  </div> -->
   <div class="skills-grid">
-    <div class="skill-cell reveal d1">
-      <span class="skill-icon">🐍</span>
-      <div class="skill-name">Python</div>
-      <div class="skill-sub">Primary language</div>
-    </div>
-    <div class="skill-cell reveal d2">
-      <span class="skill-icon">🎭</span>
-      <div class="skill-name">Playwright</div>
-      <div class="skill-sub">UI automation</div>
-    </div>
-    <div class="skill-cell reveal d3">
-      <span class="skill-icon">⚗️</span>
-      <div class="skill-name">Selenium</div>
-      <div class="skill-sub">Web testing</div>
-    </div>
-    <div class="skill-cell reveal d4">
-      <span class="skill-icon">🧪</span>
-      <div class="skill-name">pytest</div>
-      <div class="skill-sub">Test framework</div>
-    </div>
-    <div class="skill-cell tc reveal d1">
-      <span class="skill-icon">❄️</span>
-      <div class="skill-name">Snowflake</div>
-      <div class="skill-sub">Data platform</div>
-    </div>
-    <div class="skill-cell tc reveal d2">
-      <span class="skill-icon">🗄️</span>
-      <div class="skill-name">SQL / SSMS</div>
-      <div class="skill-sub">DB validation</div>
-    </div>
-    <div class="skill-cell tc reveal d3">
-      <span class="skill-icon">📊</span>
-      <div class="skill-name">ETL Testing</div>
-      <div class="skill-sub">Pipeline QA</div>
-    </div>
-    <div class="skill-cell tc reveal d4">
-      <span class="skill-icon">📈</span>
-      <div class="skill-name">Allure Reports</div>
-      <div class="skill-sub">Test reporting</div>
-    </div>
-    <div class="skill-cell yc reveal d1">
-      <span class="skill-icon">⚙️</span>
-      <div class="skill-name">Jenkins</div>
-      <div class="skill-sub">CI/CD pipeline</div>
-    </div>
-    <div class="skill-cell yc reveal d2">
-      <span class="skill-icon">🐙</span>
-      <div class="skill-name">GitHub Actions</div>
-      <div class="skill-sub">Automation</div>
-    </div>
-    <div class="skill-cell yc reveal d3">
-      <span class="skill-icon">🐳</span>
-      <div class="skill-name">Docker</div>
-      <div class="skill-sub">Containerization</div>
-    </div>
-    <div class="skill-cell pc reveal d4">
-      <span class="skill-icon">🤖</span>
-      <div class="skill-name">AI-Driven QA</div>
-      <div class="skill-sub">Smart testing</div>
-    </div>
+    <div class="skill-cell reveal d1"><span class="skill-icon">🐍</span><div class="skill-name">Python</div><div class="skill-sub">Primary language</div></div>
+    <div class="skill-cell reveal d2"><span class="skill-icon">🎭</span><div class="skill-name">Playwright</div><div class="skill-sub">UI automation</div></div>
+    <div class="skill-cell reveal d3"><span class="skill-icon">⚗️</span><div class="skill-name">Selenium</div><div class="skill-sub">Web testing</div></div>
+    <div class="skill-cell reveal d4"><span class="skill-icon">🧪</span><div class="skill-name">pytest</div><div class="skill-sub">Test framework</div></div>
+    <div class="skill-cell tc reveal d1"><span class="skill-icon">❄️</span><div class="skill-name">Snowflake</div><div class="skill-sub">Data platform</div></div>
+    <div class="skill-cell tc reveal d2"><span class="skill-icon">🗄️</span><div class="skill-name">SQL / SSMS</div><div class="skill-sub">DB validation</div></div>
+    <div class="skill-cell tc reveal d3"><span class="skill-icon">📊</span><div class="skill-name">ETL Testing</div><div class="skill-sub">Pipeline QA</div></div>
+    <div class="skill-cell tc reveal d4"><span class="skill-icon">📈</span><div class="skill-name">Allure Reports</div><div class="skill-sub">Test reporting</div></div>
+    <div class="skill-cell yc reveal d1"><span class="skill-icon">⚙️</span><div class="skill-name">Jenkins</div><div class="skill-sub">CI/CD pipeline</div></div>
+    <div class="skill-cell yc reveal d2"><span class="skill-icon">🐙</span><div class="skill-name">GitHub Actions</div><div class="skill-sub">Automation</div></div>
+    <div class="skill-cell yc reveal d3"><span class="skill-icon">🐳</span><div class="skill-name">Docker</div><div class="skill-sub">Containerization</div></div>
+    <div class="skill-cell pc reveal d4"><span class="skill-icon">🤖</span><div class="skill-name">AI-Driven QA</div><div class="skill-sub">Smart testing</div></div>
   </div>
 </section>
 
@@ -1143,26 +1318,15 @@ footer {
     </div>
     <div class="projects-count">03</div>
   </div>
-
-  <!-- Featured project -->
   <div class="project-featured reveal">
     <div>
       <div class="pf-tag">⭐ Featured Project</div>
       <h3 class="pf-title">Data Pipeline &amp; Dashboard<br>Validation Framework</h3>
       <p class="pf-desc">Designed and implemented a high-performance automation framework to validate large-scale data pipelines and dashboard reporting systems, ensuring complete data accuracy from backend to frontend. Automated end-to-end data validation across source, staging, and target layers with AI-driven enhancements.</p>
       <div class="pf-metrics">
-        <div>
-          <span class="pf-metric-val">30h→2h</span>
-          <span class="pf-metric-label">Execution Time</span>
-        </div>
-        <div>
-          <span class="pf-metric-val" style="color:var(--teal)">70%</span>
-          <span class="pf-metric-label">Efficiency Gain</span>
-        </div>
-        <div>
-          <span class="pf-metric-val" style="color:var(--yellow)">80%</span>
-          <span class="pf-metric-label">Less Manual Work</span>
-        </div>
+        <div><span class="pf-metric-val">30h→2h</span><span class="pf-metric-label">Execution Time</span></div>
+        <div><span class="pf-metric-val" style="color:var(--teal)">70%</span><span class="pf-metric-label">Efficiency Gain</span></div>
+        <div><span class="pf-metric-val" style="color:var(--yellow)">80%</span><span class="pf-metric-label">Less Manual Work</span></div>
       </div>
     </div>
     <div class="pf-tech">
@@ -1176,62 +1340,36 @@ footer {
       <div class="tech-chip">GitHub Actions</div>
     </div>
   </div>
-
   <div class="projects-grid">
-    <!-- Project 2 -->
     <div class="project-card reveal d1">
       <div class="pc-num">02</div>
       <span class="pc-icon">⚙️</span>
       <div class="pc-tag pc-tag-teal">Test Architecture</div>
       <h3 class="pc-title">Scalable Automation Framework from Scratch</h3>
       <p class="pc-desc">Built a zero-to-one automation framework using Python + Playwright + pytest with reusable page object models, integrated CI/CD pipelines, and smart test reporting. Zero flaky tests, parallel execution built-in.</p>
-      <div class="pc-pills">
-        <span class="pc-pill">Python</span>
-        <span class="pc-pill">Playwright</span>
-        <span class="pc-pill">GitHub Actions</span>
-        <span class="pc-pill">Allure</span>
-      </div>
+      <div class="pc-pills"><span class="pc-pill">Python</span><span class="pc-pill">Playwright</span><span class="pc-pill">GitHub Actions</span><span class="pc-pill">Allure</span></div>
       <div class="pc-metrics-row">
-        <div>
-          <span class="pc-metric-val">80%</span>
-          <span class="pc-metric-lbl">Time Saved</span>
-        </div>
-        <div>
-          <span class="pc-metric-val">0</span>
-          <span class="pc-metric-lbl">Flaky Tests</span>
-        </div>
+        <div><span class="pc-metric-val">80%</span><span class="pc-metric-lbl">Time Saved</span></div>
+        <div><span class="pc-metric-val">0</span><span class="pc-metric-lbl">Flaky Tests</span></div>
       </div>
     </div>
-
-    <!-- Project 3 -->
     <div class="project-card pc3 reveal d2">
       <div class="pc-num">03</div>
       <span class="pc-icon">🏥</span>
       <div class="pc-tag pc-tag-purple">Healthcare Domain</div>
       <h3 class="pc-title">Healthcare ETL &amp; Report Validation System</h3>
       <p class="pc-desc">End-to-end ETL testing and report validation for a critical healthcare data platform. Source → Stage → Target validation with complex SQL reconciliation, handling sensitive regulatory data with 100% traceability.</p>
-      <div class="pc-pills">
-        <span class="pc-pill">SQL</span>
-        <span class="pc-pill">SSMS</span>
-        <span class="pc-pill">Python</span>
-        <span class="pc-pill">Jenkins</span>
-      </div>
+      <div class="pc-pills"><span class="pc-pill">SQL</span><span class="pc-pill">SSMS</span><span class="pc-pill">Python</span><span class="pc-pill">Jenkins</span></div>
       <div class="pc-metrics-row">
-        <div>
-          <span class="pc-metric-val" style="color:#B07FE0">100%</span>
-          <span class="pc-metric-lbl">Audit Coverage</span>
-        </div>
-        <div>
-          <span class="pc-metric-val" style="color:#B07FE0">3×</span>
-          <span class="pc-metric-lbl">Faster Releases</span>
-        </div>
+        <div><span class="pc-metric-val" style="color:#B07FE0">100%</span><span class="pc-metric-lbl">Audit Coverage</span></div>
+        <div><span class="pc-metric-val" style="color:#B07FE0">3×</span><span class="pc-metric-lbl">Faster Releases</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ========== CONTACT ========== -->
-<section id="contact">
+<!-- <section id="contact">
   <div class="contact-inner">
     <div class="contact-left">
       <div class="section-label reveal">Let's Connect</div>
@@ -1240,24 +1378,15 @@ footer {
       <div class="contact-links reveal d3">
         <a href="mailto:your-email@example.com" class="clink">
           <div class="clink-icon">✉️</div>
-          <div>
-            <div class="clink-label">Email</div>
-            <div class="clink-text">your-email@example.com</div>
-          </div>
+          <div><div class="clink-label">Email</div><div class="clink-text">your-email@example.com</div></div>
         </a>
         <a href="https://linkedin.com/in/your-profile" class="clink">
           <div class="clink-icon">💼</div>
-          <div>
-            <div class="clink-label">LinkedIn</div>
-            <div class="clink-text">linkedin.com/in/your-profile</div>
-          </div>
+          <div><div class="clink-label">LinkedIn</div><div class="clink-text">linkedin.com/in/your-profile</div></div>
         </a>
         <a href="https://x.com/your-handle" class="clink">
           <div class="clink-icon">𝕏</div>
-          <div>
-            <div class="clink-label">X / Twitter</div>
-            <div class="clink-text">x.com/your-handle</div>
-          </div>
+          <div><div class="clink-label">X / Twitter</div><div class="clink-text">x.com/your-handle</div></div>
         </a>
       </div>
       <div style="margin-top:32px;" class="reveal d4">
@@ -1265,21 +1394,20 @@ footer {
           <span>Download Resume</span>
           <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
         </button>
-      </div>
-    </div>
-
+      </div> -->
+    <!-- </div>
     <div class="contact-right reveal rr d2">
       <div class="chat-wrap">
         <div class="chat-hdr">
           <div class="chat-av">👨‍💻</div>
           <div>
-            <div class="chat-hdr-name">SDET & Test Architect</div>
+            <div class="chat-hdr-name">Surojit Sen</div>
             <div class="chat-hdr-status"><span class="chat-dot"></span>Online — replies fast</div>
           </div>
         </div>
         <div class="chat-msgs" id="chatMsgs">
           <div class="cmsg recv">
-            <div class="cmsg-av o">QE</div>
+            <div class="cmsg-av o">SS</div>
             <div>
               <div class="cmsg-bubble">Hey! 👋 Thanks for visiting. What are you looking to build or improve in your QA process?</div>
               <div class="cmsg-time">Just now</div>
@@ -1294,20 +1422,127 @@ footer {
         </div>
       </div>
     </div>
+  </div> -->
+<!-- </section> -->
+
+<!-- ========== CONTACT ========== -->
+<section id="contact">
+  <div class="contact-center">
+
+    <!-- Eyebrow -->
+    <div class="contact-eyebrow reveal">
+      <svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Let's Connect
+    </div>
+
+    <h2 class="contact-heading reveal d1">
+      LET's<span class="ch-o">BUILD</span> <span class="ch-t">TOGETHER</span>
+    </h2>
+
+    <p class="contact-sub reveal d2">
+      I'm always open to discussing opportunities around test automation, data validation, and quality architecture — whether it's a full-time role, consulting, or collaboration.
+    </p>
+
+    <!-- Main content grid -->
+    <div class="contact-grid reveal d3">
+
+      <!-- LEFT: Form -->
+      <div class="contact-form-box">
+        <div class="cfb-title">Send a Message</div>
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <label class="cf-label">Name <span>*</span></label>
+            <input class="cf-input" id="cf-name" type="text" placeholder="Your name" />
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">Email <span>*</span></label>
+            <input class="cf-input" id="cf-email" type="email" placeholder="your@email.com" />
+          </div>
+        </div>
+
+        <div class="cf-group">
+          <label class="cf-label">Subject</label>
+          <input class="cf-input" id="cf-subject" type="text" placeholder="What's this about?" />
+        </div>
+
+        <div class="cf-group">
+          <label class="cf-label">Message <span>*</span></label>
+          <textarea class="cf-textarea" id="cf-message" placeholder="Your message..."></textarea>
+        </div>
+
+        <button class="cf-submit" id="cf-btn" onclick="submitForm()">
+          <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          <span>Send Message</span>
+        </button>
+
+        <div class="cf-success" id="cf-success">
+          ✅ Message sent! I'll get back to you within 24 hours.
+        </div>
+      </div>
+
+      <!-- RIGHT: Info -->
+      <div class="contact-info-box">
+
+        <div class="cib-section-title">Contact Information</div>
+        <div class="cib-item">
+          <div class="cib-icon">✉️</div>
+          <div>
+            <div class="cib-label">Email</div>
+            <div class="cib-value">surojit.sk.sen@gmail.com</div>
+          </div>
+        </div>
+        <div class="cib-item">
+          <div class="cib-icon">📍</div>
+          <div>
+            <div class="cib-label">Location</div>
+            <div class="cib-value">India</div>
+          </div>
+        </div>
+        <div class="cib-item">
+          <div class="cib-icon">💼</div>
+          <div>
+            <div class="cib-label">Availability</div>
+            <div class="cib-value">Open to opportunities</div>
+          </div>
+        </div>
+
+        <div class="cib-section-title" style="margin-top:28px;">Connect on Social</div>
+        <div class="cib-socials">
+          <a href="https://www.linkedin.com/in/surojit-s-sen-42038a240/" class="cib-social" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://github.com/your-handle" class="cib-social" title="GitHub">
+            <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+          <a href="https://x.com/your-handle" class="cib-social" title="X / Twitter">
+            <svg viewBox="0 0 24 24" width="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+
+        <div class="cib-response">
+          <div class="cib-response-title">
+            <svg viewBox="0 0 24 24" width="13" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Response Time
+          </div>
+          <p class="cib-response-body">I typically respond within 24 hours. For urgent inquiries, please mention it in the subject line.</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">QUALITY.ENGINEERED</div>
-  <div class="footer-copy">© 2025 — SDET & Test Architect Portfolio</div>
+  <div class="footer-copy">© 2026 Surojit Sen. All rights reserved</div>
   <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+  <div class="footer-copy">Made with ❤️ in India</div>
 </footer>
 
 <script>
-// ============================
 // CURSOR
-// ============================
 const cursor = document.getElementById('cursor');
 const ring   = document.getElementById('cursor-ring');
 let mx=0, my=0, rx=0, ry=0;
@@ -1325,180 +1560,100 @@ function animRing() {
 }
 animRing();
 
-// ============================
-// THREE.JS 3D BACKGROUND
-// ============================
+// THREE.JS
 (function() {
   const canvas = document.getElementById('bg-canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
-
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 30;
-
-  // ---- Particle field ----
   const particleCount = 1800;
   const positions = new Float32Array(particleCount * 3);
   const colors    = new Float32Array(particleCount * 3);
-  const sizes     = new Float32Array(particleCount);
-
-  const pallete = [
-    new THREE.Color('#FF6B35'),
-    new THREE.Color('#00E5CC'),
-    new THREE.Color('#FFD23F'),
-    new THREE.Color('#FF3E6C'),
-    new THREE.Color('#ffffff'),
-  ];
-
+  const pallete = [new THREE.Color('#FF6B35'),new THREE.Color('#00E5CC'),new THREE.Color('#FFD23F'),new THREE.Color('#FF3E6C'),new THREE.Color('#ffffff')];
   for (let i = 0; i < particleCount; i++) {
     positions[i*3]   = (Math.random()-0.5)*120;
     positions[i*3+1] = (Math.random()-0.5)*80;
     positions[i*3+2] = (Math.random()-0.5)*60;
     const c = pallete[Math.floor(Math.random()*pallete.length)];
-    colors[i*3]   = c.r;
-    colors[i*3+1] = c.g;
-    colors[i*3+2] = c.b;
-    sizes[i] = Math.random() * 1.5 + 0.3;
+    colors[i*3]=c.r; colors[i*3+1]=c.g; colors[i*3+2]=c.b;
   }
-
   const pGeo = new THREE.BufferGeometry();
   pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   pGeo.setAttribute('color',    new THREE.BufferAttribute(colors,    3));
-  pGeo.setAttribute('size',     new THREE.BufferAttribute(sizes,     1));
-
-  const pMat = new THREE.PointsMaterial({
-    size: 0.25,
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.6,
-    sizeAttenuation: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  });
-
+  const pMat = new THREE.PointsMaterial({ size:0.25, vertexColors:true, transparent:true, opacity:0.6, sizeAttenuation:true, blending:THREE.AdditiveBlending, depthWrite:false });
   const particles = new THREE.Points(pGeo, pMat);
   scene.add(particles);
-
-  // ---- Floating geometric shapes ----
   const shapes = [];
-
-  function addShape(geo, color, x, y, z, wireframe=false) {
-    const mat = new THREE.MeshBasicMaterial({
-      color,
-      wireframe,
-      transparent: true,
-      opacity: wireframe ? 0.12 : 0.08,
-    });
+  function addShape(geo, color, x, y, z, wf=false) {
+    const mat = new THREE.MeshBasicMaterial({ color, wireframe:wf, transparent:true, opacity:wf?0.12:0.08 });
     const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.set(x, y, z);
+    mesh.position.set(x,y,z);
     scene.add(mesh);
-    shapes.push({ mesh, speed: (Math.random()-0.5)*0.005, rot: new THREE.Vector3(Math.random(), Math.random(), Math.random()) });
-    return mesh;
+    shapes.push({ mesh, speed:(Math.random()-0.5)*0.005, rot:new THREE.Vector3(Math.random(),Math.random(),Math.random()) });
   }
-
-  // Icosahedrons
-  addShape(new THREE.IcosahedronGeometry(3.5, 0), 0xFF6B35, -18,  8,  -5, true);
-  addShape(new THREE.IcosahedronGeometry(2,   0), 0x00E5CC,  20, -6,  -8, true);
-  addShape(new THREE.IcosahedronGeometry(1.5, 0), 0xFFD23F, -5,  -10, -3, true);
-  addShape(new THREE.IcosahedronGeometry(4,   0), 0xFF3E6C,  14,  12, -12, true);
-
-  // Torus
-  const torusMat = new THREE.MeshBasicMaterial({ color: 0xFF6B35, wireframe: true, transparent: true, opacity: 0.1 });
-  const torus    = new THREE.Mesh(new THREE.TorusGeometry(8, 0.8, 8, 40), torusMat);
-  torus.position.set(-8, 2, -15);
-  torus.rotation.x = Math.PI / 3;
+  addShape(new THREE.IcosahedronGeometry(3.5,0), 0xFF6B35, -18, 8, -5, true);
+  addShape(new THREE.IcosahedronGeometry(2,0),   0x00E5CC,  20,-6, -8, true);
+  addShape(new THREE.IcosahedronGeometry(1.5,0), 0xFFD23F,  -5,-10,-3, true);
+  addShape(new THREE.IcosahedronGeometry(4,0),   0xFF3E6C,  14, 12,-12, true);
+  const torusMat = new THREE.MeshBasicMaterial({ color:0xFF6B35, wireframe:true, transparent:true, opacity:0.1 });
+  const torus = new THREE.Mesh(new THREE.TorusGeometry(8,0.8,8,40), torusMat);
+  torus.position.set(-8,2,-15); torus.rotation.x = Math.PI/3;
   scene.add(torus);
-  shapes.push({ mesh: torus, speed: 0.002, rot: new THREE.Vector3(0.3, 1, 0.1) });
-
-  // Small solid dots
-  for (let i = 0; i < 12; i++) {
-    const g = new THREE.SphereGeometry(0.15, 6, 6);
-    const c = [0xFF6B35, 0x00E5CC, 0xFFD23F][i%3];
-    const mat2 = new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.5 });
-    const m = new THREE.Mesh(g, mat2);
-    m.position.set((Math.random()-0.5)*40, (Math.random()-0.5)*25, (Math.random()-0.5)*10);
+  shapes.push({ mesh:torus, speed:0.002, rot:new THREE.Vector3(0.3,1,0.1) });
+  for (let i=0;i<12;i++) {
+    const g = new THREE.SphereGeometry(0.15,6,6);
+    const c = [0xFF6B35,0x00E5CC,0xFFD23F][i%3];
+    const m2 = new THREE.MeshBasicMaterial({ color:c, transparent:true, opacity:0.5 });
+    const m = new THREE.Mesh(g,m2);
+    m.position.set((Math.random()-0.5)*40,(Math.random()-0.5)*25,(Math.random()-0.5)*10);
     scene.add(m);
-    shapes.push({ mesh: m, speed: (Math.random()-0.5)*0.008, rot: new THREE.Vector3(Math.random(), Math.random(), Math.random()) });
+    shapes.push({ mesh:m, speed:(Math.random()-0.5)*0.008, rot:new THREE.Vector3(Math.random(),Math.random(),Math.random()) });
   }
-
-  // ---- Grid lines plane ----
-  const gridHelper = new THREE.GridHelper(100, 30, 0xFF6B35, 0x111827);
-  gridHelper.position.y = -20;
-  gridHelper.material.transparent = true;
-  gridHelper.material.opacity = 0.2;
-  scene.add(gridHelper);
-
-  // Mouse parallax
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', e => {
-    mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-
-  // Scroll
-  let scrollY = 0;
-  window.addEventListener('scroll', () => { scrollY = window.scrollY; });
-
-  // Resize
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-
+  const grid = new THREE.GridHelper(100,30,0xFF6B35,0x111827);
+  grid.position.y = -20; grid.material.transparent=true; grid.material.opacity=0.2;
+  scene.add(grid);
+  let mouseX=0, mouseY=0, scrollY=0;
+  document.addEventListener('mousemove', e => { mouseX=(e.clientX/window.innerWidth-0.5)*2; mouseY=(e.clientY/window.innerHeight-0.5)*2; });
+  window.addEventListener('scroll', () => { scrollY=window.scrollY; });
+  window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight); });
   const clock = new THREE.Clock();
   function animate() {
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
-
-    // Rotate particles slowly
-    particles.rotation.y = t * 0.025;
-    particles.rotation.x = t * 0.01;
-
-    // Parallax camera
-    camera.position.x += (mouseX * 3 - camera.position.x) * 0.03;
-    camera.position.y += (-mouseY * 2 - camera.position.y) * 0.03;
-    camera.position.z = 30 - scrollY * 0.008;
-
-    // Animate shapes
+    particles.rotation.y = t*0.025; particles.rotation.x = t*0.01;
+    camera.position.x += (mouseX*3 - camera.position.x)*0.03;
+    camera.position.y += (-mouseY*2 - camera.position.y)*0.03;
+    camera.position.z = 30 - scrollY*0.008;
     shapes.forEach(s => {
-      s.mesh.rotation.x += s.rot.x * s.speed * 0.5;
-      s.mesh.rotation.y += s.rot.y * s.speed;
-      s.mesh.rotation.z += s.rot.z * s.speed * 0.3;
-      s.mesh.position.y += Math.sin(t + s.mesh.position.x) * 0.003;
+      s.mesh.rotation.x += s.rot.x*s.speed*0.5;
+      s.mesh.rotation.y += s.rot.y*s.speed;
+      s.mesh.rotation.z += s.rot.z*s.speed*0.3;
+      s.mesh.position.y += Math.sin(t+s.mesh.position.x)*0.003;
     });
-
-    // Pulse torus
     torus.rotation.z += 0.003;
-
     renderer.render(scene, camera);
   }
   animate();
 })();
 
-// ============================
 // SCROLL REVEAL
-// ============================
 const revEls = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
 }, { threshold: 0.12 });
 revEls.forEach(el => obs.observe(el));
 
-// ============================
 // CHAT
-// ============================
 const replies = [
-  "Thanks for reaching out! With 8+ years in test automation, I'd love to hear more about your project. What's your current tech stack?",
-  "Great question! I specialize in Python + Playwright + Snowflake for data pipeline validation. Happy to discuss your specific needs.",
-  "I've helped teams reduce test execution time by 80% and cut manual effort significantly. Let's explore what's possible for you!",
-  "I'm open to full-time roles, consulting, and collaboration. Feel free to email me directly or connect on LinkedIn!",
-  "Quality engineering is my passion — I build systems where failures don't survive. Let's connect and build something great! 🚀",
+  "Thanks for reaching out! I'd love to hear more about your project.",
+  "Great question! I specialize in Python + Playwright + Snowflake for data pipeline validation.",
+  "I've helped teams reduce test execution time by 80% and cut manual effort significantly. Let's explore!",
+  "I'm open to full-time roles, consulting, and collaboration. Feel free to email me directly!",
+  "Quality engineering is my passion — I build systems where failures don't survive. 🚀",
 ];
 let rIdx = 0;
 function sendMsg() {
@@ -1506,27 +1661,72 @@ function sendMsg() {
   const msgs = document.getElementById('chatMsgs');
   const txt  = inp.value.trim();
   if (!txt) return;
-  const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  const now = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
   msgs.innerHTML += `<div class="cmsg sent"><div class="cmsg-av u">You</div><div><div class="cmsg-bubble">${esc(txt)}</div><div class="cmsg-time">${now}</div></div></div>`;
-  inp.value = '';
-  msgs.scrollTop = msgs.scrollHeight;
+  inp.value = ''; msgs.scrollTop = msgs.scrollHeight;
   const tid = 'tid-'+Date.now();
   setTimeout(() => {
-    msgs.innerHTML += `<div class="cmsg recv" id="${tid}"><div class="cmsg-av o">QE</div><div><div class="typing-ind"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div></div></div>`;
+    msgs.innerHTML += `<div class="cmsg recv" id="${tid}"><div class="cmsg-av o">SS</div><div><div class="typing-ind"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div></div></div>`;
     msgs.scrollTop = msgs.scrollHeight;
     setTimeout(() => {
-      const el = document.getElementById(tid);
-      if (el) el.remove();
-      const rNow = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-      msgs.innerHTML += `<div class="cmsg recv"><div class="cmsg-av o">QE</div><div><div class="cmsg-bubble">${replies[rIdx++ % replies.length]}</div><div class="cmsg-time">${rNow}</div></div></div>`;
+      document.getElementById(tid)?.remove();
+      const rNow = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+      msgs.innerHTML += `<div class="cmsg recv"><div class="cmsg-av o">SS</div><div><div class="cmsg-bubble">${replies[rIdx++ % replies.length]}</div><div class="cmsg-time">${rNow}</div></div></div>`;
       msgs.scrollTop = msgs.scrollHeight;
     }, 1600 + Math.random()*800);
   }, 400);
 }
-function esc(t) {
-  const d = document.createElement('div');
-  d.appendChild(document.createTextNode(t));
-  return d.innerHTML;
+function esc(t) { const d=document.createElement('div'); d.appendChild(document.createTextNode(t)); return d.innerHTML; }
+
+// CONTACT FORM
+function submitForm() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim();
+
+  if (!name || !email || !message) {
+    ['cf-name','cf-email','cf-message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.style.borderColor = 'var(--pink)';
+        setTimeout(() => el.style.borderColor = '', 800);
+      }
+    });
+    return;
+  }
+
+  const btn = document.getElementById('cf-btn');
+  btn.style.opacity = '0.7';
+  btn.innerHTML = '<span>Sending...</span>';
+
+ // Send notification to YOU
+  emailjs.send("service_6tzyd7b", "template_6tocczn", {
+    name: name,
+    email: email,
+    title: subject,
+    message: message,
+  })
+  // Send auto-reply to VISITOR
+  .then(() => {
+    return emailjs.send("service_6tzyd7b", "template_1p79v9m", {
+      name: name,
+      email: email,
+      title: subject,
+      message: message,
+    });
+  })
+  .then(() => {
+    btn.style.display = 'none';
+    document.getElementById('cf-success').style.display = 'block';
+    ['cf-name','cf-email','cf-subject','cf-message'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+  })
+  .catch(() => {
+    btn.style.opacity = '1';
+    btn.innerHTML = '<span>Failed — Try Again</span>';
+  });
 }
 </script>
 </body>
