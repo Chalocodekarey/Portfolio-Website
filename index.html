@@ -1168,9 +1168,12 @@ footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justi
     padding: 12px 20px;
     justify-content: space-between;
   }
-  .nav-links { display: none; }
+  /* .nav-links { display: none; }
   .nav-logo { font-size: 1.4rem; }
-  .nav-btn { padding: 8px 16px; font-size: 0.7rem; }
+  .nav-btn { padding: 8px 16px; font-size: 0.7rem; } */
+  .nav-links { display: none; }
+  .nav-btn   { display: none; }
+  .hamburger { display: flex; } 
 
   /* HERO */
   #hero {
@@ -1318,62 +1321,122 @@ footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justi
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
   background: none;
-  border: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px 10px;
   z-index: 200;
+  transition: border-color 0.3s;
 }
+.hamburger:hover { border-color: var(--orange); }
 .hamburger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: var(--white);
   border-radius: 2px;
-  transition: all 0.3s;
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  transform-origin: center;
 }
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.hamburger.open { border-color: var(--orange); }
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--orange);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--orange);
+}
 
 /* MOBILE MENU */
 .mobile-menu {
-  display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(6,10,20,0.98);
-  backdrop-filter: blur(20px);
+  background: rgba(6,10,20,0.97);
+  backdrop-filter: blur(24px);
   z-index: 150;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1),
+              opacity 0.35s ease,
+              visibility 0.45s;
 }
-.mobile-menu.open { display: flex; }
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
 .mobile-menu a {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem;
-  letter-spacing: 3px;
+  font-size: 2.8rem;
+  letter-spacing: 4px;
   color: var(--white);
   text-decoration: none;
-  transition: color 0.3s;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
 }
+.mobile-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--orange);
+  transition: width 0.3s;
+}
+.mobile-menu a:hover::after { width: 100%; }
 .mobile-menu a:hover { color: var(--orange); }
+.mobile-menu.open a:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0.05s; }
+.mobile-menu.open a:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.10s; }
+.mobile-menu.open a:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.15s; }
+.mobile-menu.open a:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.20s; }
+.mobile-menu.open a:nth-child(5) { opacity:1; transform:translateY(0); transition-delay:0.25s; }
 .mobile-menu-btn {
   font-family: 'Cabinet Grotesk', sans-serif !important;
-  font-size: 0.9rem !important;
+  font-size: 0.85rem !important;
   letter-spacing: 2px !important;
-  background: var(--orange);
+  text-transform: uppercase;
+  background: var(--orange) !important;
   color: var(--bg) !important;
-  padding: 14px 36px;
+  padding: 14px 40px !important;
   border-radius: 30px;
   margin-top: 8px;
 }
+.mobile-menu-btn:hover { background: var(--teal) !important; }
+.mobile-menu-btn::after { display: none !important; }
+.mobile-menu-hint {
+  position: absolute;
+  bottom: 40px;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+  opacity: 0;
+  transition: opacity 0.4s 0.3s;
+}
+.mobile-menu.open .mobile-menu-hint { opacity: 1; }
 
+/* Show hamburger only on mobile */
 @media(max-width:768px){
   .hamburger { display: flex; }
-  .nav-btn { display: none; } /* hide desktop button, mobile menu has it */
+  .nav-links  { display: none; }
+  .nav-btn    { display: none; }
 }
 
 </style>
@@ -1387,29 +1450,30 @@ footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justi
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Surojit<span> Sen</span></a>
-   <!-- <a href="#hero" class="nav-logo">
-    <div class="nav-logo-badge">SS</div>
-    <span class="nav-logo-name">Surojit <span>Sen</span></span>
-  </a> -->
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-  </button>
   <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Talk</button>
+  
+  <!-- HAMBURGER — must be INSIDE nav, AFTER the button -->
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU — must be OUTSIDE nav, right AFTER </nav> -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about"    onclick="closeMenu()">About</a>
   <a href="#skills"   onclick="closeMenu()">Skills</a>
   <a href="#projects" onclick="closeMenu()">Projects</a>
   <a href="#contact"  onclick="closeMenu()">Contact</a>
   <a href="#contact"  onclick="closeMenu()" class="mobile-menu-btn">Let's Talk</a>
+  <div class="mobile-menu-hint">Tap outside to close</div>
 </div>
 
 <!-- ========== HERO ========== -->
@@ -1981,13 +2045,9 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
   document.body.style.overflow = '';
 }
-
-// Close menu when clicking outside (on the dark overlay)
 document.getElementById('mobileMenu').addEventListener('click', function(e) {
   if (e.target === this) closeMenu();
 });
-
-// Close menu on Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeMenu();
 });
