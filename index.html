@@ -1133,6 +1133,23 @@ footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justi
 .reveal.on { opacity:1;transform:none; }
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
 
+/* ========== RESPONSIVE ========== */
+/* @media(max-width:900px){
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  #hero { padding:100px 24px 60px; }
+  .hero-badge { display:none; }
+  #about { padding:80px 24px; grid-template-columns:1fr; gap:40px; }
+  #projects,#contact { padding:80px 24px; grid-template-columns:1fr; }
+  .projects-header { flex-direction:column;align-items:flex-start;gap:0; }
+  .projects-grid { grid-template-columns:1fr; }
+  footer { padding:24px;flex-direction:column;gap:16px;text-align:center; }
+  .project-featured { grid-template-columns:1fr;padding:32px; }
+  .skills-grid { grid-template-columns:repeat(2,1fr); }
+  .contact-inner { grid-template-columns:1fr; }
+  .ticker-wrap,.ticker-wrap-2 { -webkit-mask-image:linear-gradient(90deg,transparent 0%,black 5%,black 95%,transparent 100%); }
+} */
+
 /* ========== MOBILE RESPONSIVE ========== */
 
 /* Hide custom cursor on mobile */
@@ -1296,6 +1313,69 @@ footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justi
   #skills { padding: 60px 40px; }
   .hero-badge { display: none; }
 }
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* MOBILE MENU */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(6,10,20,0.98);
+  backdrop-filter: blur(20px);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--orange); }
+.mobile-menu-btn {
+  font-family: 'Cabinet Grotesk', sans-serif !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 2px !important;
+  background: var(--orange);
+  color: var(--bg) !important;
+  padding: 14px 36px;
+  border-radius: 30px;
+  margin-top: 8px;
+}
+
+@media(max-width:768px){
+  .hamburger { display: flex; }
+  .nav-btn { display: none; } /* hide desktop button, mobile menu has it */
+}
+
 </style>
 </head>
 <body>
@@ -1317,8 +1397,20 @@ footer { border-top:1px solid var(--border);padding:20px 60px;display:flex;justi
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+  </button>
   <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Talk</button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"    onclick="closeMenu()">About</a>
+  <a href="#skills"   onclick="closeMenu()">Skills</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#contact"  onclick="closeMenu()">Contact</a>
+  <a href="#contact"  onclick="closeMenu()" class="mobile-menu-btn">Let's Talk</a>
+</div>
 
 <!-- ========== HERO ========== -->
 <section id="hero">
@@ -1874,6 +1966,20 @@ function submitForm() {
     btn.style.opacity = '1';
     btn.innerHTML = '<span>Failed — Try Again</span>';
   });
+}
+
+// HAMBURGER MENU
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
 }
 </script>
 </body>
