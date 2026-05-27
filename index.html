@@ -1981,6 +1981,16 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
   document.body.style.overflow = '';
 }
+
+// Close menu when clicking outside (on the dark overlay)
+document.getElementById('mobileMenu').addEventListener('click', function(e) {
+  if (e.target === this) closeMenu();
+});
+
+// Close menu on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMenu();
+});
 </script>
 </body>
 </html>
